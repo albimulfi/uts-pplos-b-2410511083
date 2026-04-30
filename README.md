@@ -11,3 +11,7 @@ Sistem donor darah berbasis Service-Oriented Architecture.
 - Donor service (Laravel)
 - Blood Service (Node.js)
 - API gateway
+
+## progress
+1. setup project
+2. setup git
