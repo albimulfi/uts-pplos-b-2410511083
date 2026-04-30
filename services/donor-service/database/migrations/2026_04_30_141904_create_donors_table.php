@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('blood_type');
+            $table->string('phone');
             $table->timestamps();
         });
     }
