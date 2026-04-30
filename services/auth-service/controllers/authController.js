@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const axios = require("axios");
 
 let users = [];
 let refreshTokens = [];
@@ -76,4 +77,61 @@ exports.logout = (req, res) => {
     refreshTokens = refreshTokens.filter(t => t !== token);
 
     res.json({ message: "Anda Berhasil Logout" });
+};
+
+// lewat github
+exports.githubLogin = (req, res) => {
+    const clientId = process.env.GITHUB_CLIENT_ID;
+    const redirectUri = "http://localhost:3001/auth/github/callback";
+
+    const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+
+    res.redirect(url);
+}
+
+exports.githubCallback = async (req, res) => {
+    const code =req.query.code;
+
+    try {
+        const tokenRes = await axios.post(
+            "https://github.com/login/oauth/acces_token",
+            {
+                client_id: process.env.GITHUB_CLIENT_ID,
+                client_secret: process.env.GITHUB_CLIENT_SECRET,
+                code
+            },
+            {
+                headers: { Accept: "application/json" }
+            }
+        );
+
+        const accesTokenGitHub = tokenRes.data.access_token;
+
+        const userRes = await axios.get("https://api.github.com/user", {
+            headers: {
+                Authorization: `Bearer ${accesTokenGitHub}`
+            }
+        });
+
+        const user = userRes.data;
+
+        // buat jwt yang lokal
+        const accessToken = jwt.sign(
+            {
+                id: user_id, 
+                username: user.login
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: "15m" }
+        );
+
+        res.json({
+            message: "Login ke Github berhasil",
+            User: user.login,
+            token: accessToken
+        });
+
+    } catch (err) {
+        res.status(500).json({ message: " OAuth gagal" });
+    }
 };
