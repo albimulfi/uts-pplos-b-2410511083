@@ -90,11 +90,11 @@ exports.githubLogin = (req, res) => {
 }
 
 exports.githubCallback = async (req, res) => {
-    const code =req.query.code;
+    const code = req.query.code;
 
     try {
         const tokenRes = await axios.post(
-            "https://github.com/login/oauth/acces_token",
+            "https://github.com/login/oauth/access_token",
             {
                 client_id: process.env.GITHUB_CLIENT_ID,
                 client_secret: process.env.GITHUB_CLIENT_SECRET,
@@ -109,7 +109,7 @@ exports.githubCallback = async (req, res) => {
 
         const userRes = await axios.get("https://api.github.com/user", {
             headers: {
-                Authorization: `Bearer ${accesTokenGitHub}`
+                Authorization: `token ${accesTokenGitHub}`
             }
         });
 
@@ -117,10 +117,7 @@ exports.githubCallback = async (req, res) => {
 
         // buat jwt yang lokal
         const accessToken = jwt.sign(
-            {
-                id: user_id, 
-                username: user.login
-            },
+            { id: user.id, username: user.login },
             process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
@@ -132,6 +129,7 @@ exports.githubCallback = async (req, res) => {
         });
 
     } catch (err) {
-        res.status(500).json({ message: " OAuth gagal" });
+        console.log("ERROR OAUTH:", err.response?.data || err.message);
+        res.status(500).json({ message: "OAuth gagal", error: err.message });
     }
 };
