@@ -25,6 +25,35 @@ router.post("/auth/login", async (req, res) => {
         res.json(response.data);
     } catch (err) {
         res.status(500).json({ message: "Auth service error" });
+        
+    }
+});
+
+router.post("/auth/refresh", async (req, res) => {
+    try {
+        const response = await axios.post(
+            `${process.env.AUTH_SERVICE}/auth/refresh`,
+            req.body
+        );
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ message: "Auth service error",
+            error: err.response?.data || err.message
+         });
+    }
+});
+
+router.post("/auth/logout", async (req, res) => {
+    try {
+        const response = await axios.post(
+            `${process.env.AUTH_SERVICE}/auth/logout`,
+            req.body
+        );
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ message: "Auth service error",
+            error: err.response?.data || err.message
+         });
     }
 });
 
@@ -36,7 +65,9 @@ router.get("/donors", verifyToken, async (req, res) => {
         );
         res.json(response.data);
     } catch (err) {
-        res.status(500).json({ message: "Donor service error" });
+        res.status(500).json({ message: "Donor service error",
+            error: err.response?.data || err.message
+         });
     }
 });
 
@@ -64,7 +95,7 @@ router.get("/blood", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/blood", async (req, res) => {
+router.post("/blood", verifyToken, async (req, res) => {
     try {
         const response = await axios.post(
             `${process.env.BLOOD_SERVICE}/blood`,
@@ -74,6 +105,13 @@ router.post("/blood", async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: "Blood service error" });
     }
+});
+
+router.get("/blood-donor", verifyToken, async (req, res) => {
+    const response = await axios.get(
+        `${process.env.BLOOD_SERVICE}/blood-with-donor`
+    );
+    res.json(response.data);
 });
 
 module.exports = router;

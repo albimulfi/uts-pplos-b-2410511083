@@ -8,7 +8,7 @@ let refreshTokens = [];
 exports.register = async (req, res) => {
     const { username, password } = req.body;
 
-    const hashed =await bcrypt.hash(password, 10);
+    const hashed = await bcrypt.hash(password, 10);
 
     users.push({
         id: users.length + 1,
@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
     if (!valid)
         return res.status(401).json({ message: "Password salah" });
 
-    const accesToken = jwt.sign(
+    const accessToken = jwt.sign(
         { id: user.id },
         process.env.JWT_SECRET,
         { expiresIn: "15m" }
@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
 
     refreshTokens.push(refreshToken);
 
-    res.json({ accesToken, refreshToken });
+    res.json({ accessToken, refreshToken });
 };
 
 exports.refresh = (req, res) => {
@@ -61,13 +61,13 @@ exports.refresh = (req, res) => {
         if (err) 
             return res.status(403).json({ message: "Token invalid" });
 
-        const newAccesToken = jwt.sign(
+        const newAccessToken = jwt.sign(
             { id: user.id },
             process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
 
-        res.json({ accesToken: newAccesToken });
+        res.json({ accessToken: newAccessToken });
     });
 };
 
