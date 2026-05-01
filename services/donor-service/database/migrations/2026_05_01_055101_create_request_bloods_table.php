@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('request_bloods', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hospital_id')->constrained()->onDelete('cascade');
+            $table->string('blood_type');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
