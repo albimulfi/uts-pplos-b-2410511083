@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class RequestBlood extends Model
 {
-    pr
+    protected $fillable = ['hospital_id', 'blood_type', 'amount'];
 }
