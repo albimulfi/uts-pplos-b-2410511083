@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-exports.verifyToken = (req, res) => {
-    const authHeader = req.header.authorization;
+exports.verifyToken = (req, res, next) => {
+    const authHeader = req.headers.authorization;
 
     if(!authHeader) {
         return res.status(401).json({ message: "Token tidak ada" });

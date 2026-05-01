@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const { verifyToken } = require("../middleware/authMiddleware");
 
 // auth service
 router.post("/auth/register", async (req, res) => {
@@ -28,7 +29,7 @@ router.post("/auth/login", async (req, res) => {
 });
 
 // donor service
-router.get("/donors", async (req, res) => {
+router.get("/donors", verifyToken, async (req, res) => {
     try {
         const response = await axios.get(
             `${process.env.DONOR_SERVICE}/api/donors`
@@ -39,7 +40,7 @@ router.get("/donors", async (req, res) => {
     }
 });
 
-router.post("/donors", async (req, res) => {
+router.post("/donors", verifyToken, async (req, res) => {
     try {
         const response = await axios.post(
             `${process.env.DONOR_SERVICE}/api/donors`, 
@@ -52,7 +53,7 @@ router.post("/donors", async (req, res) => {
 });
 
 // blood service
-router.get("/blood", async (req, res) => {
+router.get("/blood", verifyToken, async (req, res) => {
     try {
         const response = await axios.get(
             `${process.env.BLOOD_SERVICE}/blood`
