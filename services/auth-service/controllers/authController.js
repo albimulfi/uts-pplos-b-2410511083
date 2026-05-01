@@ -109,11 +109,27 @@ exports.githubCallback = async (req, res) => {
 
         const userRes = await axios.get("https://api.github.com/user", {
             headers: {
-                Authorization: `token ${accesTokenGitHub}`
+                Authorization: `token ${accesTokenGitHub}`,
+                Accept: "application/json"
             }
         });
 
         const user = userRes.data;
+
+        try {
+            console.log("KIRIM KE LARAVEL:", user.login);
+
+            const response = await axios.post("http://127.0.0.1:8000/api/oauth-user", {
+                github_id: user.id,
+                username: user.login,
+                email: user.email || `${user.login}@github.com`
+            });
+
+            console.log("BERHASIL SIMPAN:", response.data);
+
+        } catch (err) {
+            console.log("ERROR LARAVEL:", err.response?.data || err.message);
+        }
 
         // buat jwt yang lokal
         const accessToken = jwt.sign(

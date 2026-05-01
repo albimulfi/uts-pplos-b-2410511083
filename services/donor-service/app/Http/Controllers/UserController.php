@@ -12,7 +12,7 @@ class UserController extends Controller
         $user = User::updateOrCreate(
             ['github_id' => $request->github_id],
             [
-                'username' => $request->username,
+                'name' => $request->username,
                 'email' => $request->email
             ]
         );
