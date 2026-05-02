@@ -83,7 +83,10 @@ router.post("/donors", verifyToken, async (req, res) => {
         );
         res.json(response.data);
     } catch (err) {
-        res.status(500).json({ message: "Donor service error" });
+        res.status(500).json({
+            message: "Donor service error",
+            error: err.response?.data || err.message
+        });
     }
 });
 

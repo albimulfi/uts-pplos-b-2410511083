@@ -33,7 +33,8 @@ class DonorController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
-            'blood_type' => 'required|string|max:3'
+            'blood_type' => 'required|string|max:3',
+            'phone' => 'required|string|max:20'
         ]);
             
         $donor = Donor::create($validated);
