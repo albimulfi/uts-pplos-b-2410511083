@@ -18,6 +18,7 @@ class UserController extends Controller
                 'github_id' => $request->github_id,
                 'username' => $request->username,
                 'avatar' => $request->avatar,
+                'oauth_provider' => 'github',
                 'password' => bcrypt('oauth_default')
             ]);
 
@@ -25,7 +26,8 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->username,
                 'email' => $request->email,
-                'avatar' => $request->avatar
+                'avatar' => $request->avatar,
+                'oauth_provider' => 'github'
             ]);
         }
 
