@@ -1,0 +1,496 @@
+{
+  "info": {
+    "_postman_id": "8415108a-3c9d-4fbd-9aa6-1a6c564b6fcd",
+    "name": "Test-UTS-DonorDarah",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45025740",
+    "_collection_link": "https://go.postman.co/collection/45025740-8415108a-3c9d-4fbd-9aa6-1a6c564b6fcd?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"albi\",\r\n  \"password\": \"2410511083\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"albi\",\r\n  \"password\": \"2410511083\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refresh",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NzMzLCJleHAiOjE3NzgzMDE1MzN9.MD1AhogMYB3CVTWthialUK-sefzpjEYkqdQ3-KNqqjg\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/refresh",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "refresh"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NzMzLCJleHAiOjE3Nzc2OTc2MzN9.hBpbQ0PvmxaUJ1Vr2E31I0GtrrsqvFZ8PJisUjjX-7Y\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "data donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk3Nzk3LCJleHAiOjE3Nzc2OTg2OTd9.hUVIl0t2-xalnoJknMV0X6hviwPa7YmAbusJmC8L0h8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/donors",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cek limit rate",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjUwOTQ2LCJleHAiOjE3Nzc2NTE4NDZ9.mRjER_5SKdnnVMeUMF9EFdImA2rr72ucPRx-0CRqSaE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"name\": \"Budi\",\r\n \"blood_type\": \"B\",\r\n \"phone\": \"0812314215235\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/blood-donor",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "blood-donor"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "inter service",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NzMzLCJleHAiOjE3Nzc2OTc2MzN9.hBpbQ0PvmxaUJ1Vr2E31I0GtrrsqvFZ8PJisUjjX-7Y",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"name\": \"Budi\",\r\n \"blood_type\": \"B\",\r\n \"phone\": \"0812314215235\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/blood-donor",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "blood-donor"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjkxMjU3LCJleHAiOjE3Nzc2OTIxNTd9.oOtFjpMWRXedqC6Zv4WRJTJH5VZlEHkvymU0TSM95n4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"albi Update\",\r\n  \"blood_type\": \"B\",\r\n  \"phone\": \"081315028244\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donors/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donors",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "post data donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk3Nzk3LCJleHAiOjE3Nzc2OTg2OTd9.hUVIl0t2-xalnoJknMV0X6hviwPa7YmAbusJmC8L0h8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"lilia\",\r\n  \"blood_type\": \"B\",\r\n  \"phone\": \"0837419581\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/donors",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get paging donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NDQwLCJleHAiOjE3Nzc2OTczNDB9.JQhuwdsXsHIKn3YVYv0Yjhh_ub-7vyxaSmPSaxD96ig",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/donors?page=1&per_page=2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "per_page",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get filter type donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NDQwLCJleHAiOjE3Nzc2OTczNDB9.JQhuwdsXsHIKn3YVYv0Yjhh_ub-7vyxaSmPSaxD96ig",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/donors?blood_type=A",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors"
+          ],
+          "query": [
+            {
+              "key": "blood_type",
+              "value": "A"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get search donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NzMzLCJleHAiOjE3Nzc2OTc2MzN9.hBpbQ0PvmxaUJ1Vr2E31I0GtrrsqvFZ8PJisUjjX-7Y",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/donors?name=bud",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "bud"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "put data donor",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk3Nzk3LCJleHAiOjE3Nzc2OTg2OTd9.hUVIl0t2-xalnoJknMV0X6hviwPa7YmAbusJmC8L0h8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Budi Update\",\r\n  \"blood_type\": \"AB\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/donors/999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "donors",
+            "999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get data blood",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3Njk2NzMzLCJleHAiOjE3Nzc2OTc2MzN9.hBpbQ0PvmxaUJ1Vr2E31I0GtrrsqvFZ8PJisUjjX-7Y",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/blood",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "blood"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
