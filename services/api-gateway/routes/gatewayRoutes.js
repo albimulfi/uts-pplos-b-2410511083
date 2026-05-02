@@ -87,6 +87,37 @@ router.post("/donors", verifyToken, async (req, res) => {
     }
 });
 
+router.put("/donors/:id", verifyToken, async (req, res) => {
+    try {
+        const response = await axios.put(
+            `${process.env.DONOR_SERVICE}/api/donors/${req.params.id}`,
+            req.body
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({
+            message: "Donor service error",
+            error: err.response?.data || err.message
+        });
+    }
+});
+
+router.delete("/donors/:id", verifyToken, async (req, res) => {
+    try {
+        const response = await axios.delete(
+            `${process.env.DONOR_SERVICE}/api/donors/${req.params.id}`
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({
+            message: "Donor service error",
+            error: err.response?.data || err.message
+        });
+    }
+});
+
 // blood service
 router.get("/blood", verifyToken, async (req, res) => {
     try {

@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 
 Route::get('/donors', [DonorController::class, 'index']);
 Route::post('/donors', [DonorController::class, 'store']);
+Route::put('/donors/{id}', [DonorController::class, 'update']);
+Route::delete('/donors/{id}', [DonorController::class, 'destroy']);
 
 Route::get('/hospitals', [HospitalController::class, 'index']);
 Route::post('/hospitals', [HospitalController::class, 'store']);

@@ -40,4 +40,41 @@ class DonorController extends Controller
             
         return response()->json($donor, 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        $donor = Donor::find($id);
+
+        if (!$donor) {
+            return response()->json([
+                'message' => 'Donor tidak ditemukan'
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'name' => 'sometimes|string|max:100',
+            'blood_type' => 'sometimes|string|max:3'
+        ]);
+
+        $donor->update($validated);
+
+        return response()->json($donor, 200);
+    }
+
+    public function destroy($id)
+    {
+        $donor = Donor::find($id);
+
+        if (!$donor) {
+            return response()->json([
+                'message' => 'Donor tidak ditemukan'
+            ], 404);
+        }
+
+        $donor->delete();
+
+        return response()->json([
+            'message' => 'Donor berhasil dihapus'
+        ], 200);
+    }
 }
