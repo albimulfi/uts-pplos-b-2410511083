@@ -61,7 +61,11 @@ router.post("/auth/logout", async (req, res) => {
 router.get("/donors", verifyToken, async (req, res) => {
     try {
         const response = await axios.get(
-            `${process.env.DONOR_SERVICE}/api/donors`
+            `${process.env.DONOR_SERVICE}/api/donors`,
+
+            {
+                params: req.query
+            }
         );
         res.json(response.data);
     } catch (err) {
