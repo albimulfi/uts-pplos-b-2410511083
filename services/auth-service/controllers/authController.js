@@ -122,7 +122,8 @@ exports.githubCallback = async (req, res) => {
             const response = await axios.post("http://127.0.0.1:8000/api/oauth-user", {
                 github_id: user.id,
                 username: user.login,
-                email: user.email || `${user.login}@github.com`
+                email: user.email || `${user.login}@github.com`,
+                avatar: user.avatar_url
             });
 
             console.log("BERHASIL SIMPAN:", response.data);
